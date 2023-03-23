@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "single_linked_list.h"
 
-sll_node* create_node(i64 data)
+sll_node* sll_create_node(i64 data)
 {
   sll_node* node = (sll_node*)malloc(sizeof(sll_node));
   node->data = data;
@@ -11,7 +11,7 @@ sll_node* create_node(i64 data)
   return node;
 }
 
-sll_node* get_tail(sll_node** head)
+sll_node* sll_get_tail(sll_node** head)
 {
   sll_node* tail = *head;
   while (tail->next != NULL)
@@ -25,7 +25,7 @@ sll_node* get_tail(sll_node** head)
 sll_node** sll_create(i64 data)
 {
   sll_node** head = (sll_node**)malloc(sizeof(sll_node*));
-  sll_node* node = create_node(data);
+  sll_node* node = sll_create_node(data);
   *head = node;
 
   return head;
@@ -43,14 +43,13 @@ void sll_destroy(sll_node** head)
     current = next;
   }
   *head = NULL;
-  free(head);
 }
 
 void sll_push(sll_node** head, i64 data)
 {
-  sll_node* new_node = create_node(data);
+  sll_node* new_node = sll_create_node(data);
 
-  sll_node* tail = get_tail(head);
+  sll_node* tail = sll_get_tail(head);
   tail->next = new_node;
 
   return;
@@ -72,7 +71,7 @@ sll_node* sll_pop(sll_node** head)
 
 void sll_unshift(sll_node** head, i64 data)
 {
-  sll_node* new_node = create_node(data);
+  sll_node* new_node = sll_create_node(data);
   new_node->next = *head;
   *head = new_node;
 }
@@ -95,7 +94,7 @@ void sll_insert_after(sll_node* node, i64 data)
     return;
   }
 
-  sll_node* new_node = create_node(data);
+  sll_node* new_node = sll_create_node(data);
   new_node->next = node->next;
   node->next = new_node;
 }
