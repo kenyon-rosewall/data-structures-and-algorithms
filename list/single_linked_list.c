@@ -1,0 +1,215 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include "single_linked_list.h"
+
+sll_node* create_node(i64 data)
+{
+  sll_node* node = (sll_node*)malloc(sizeof(sll_node));
+  node->data = data;
+  node->next = NULL;
+
+  return node;
+}
+
+sll_node* get_tail(sll_node** head)
+{
+  sll_node* tail = *head;
+  while (tail->next != NULL)
+  {
+    tail = tail->next;
+  }
+
+  return tail;
+}
+
+sll_node** sll_create(i64 data)
+{
+  sll_node** head = (sll_node**)malloc(sizeof(sll_node*));
+  sll_node* node = create_node(data);
+  *head = node;
+
+  return head;
+}
+
+void sll_destroy(sll_node** head)
+{
+  sll_node* current = *head;
+  sll_node* next;
+
+  while(current != NULL)
+  {
+    next = current->next;
+    free(current);
+    current = next;
+  }
+  *head = NULL;
+  free(head);
+}
+
+void sll_push(sll_node** head, i64 data)
+{
+  sll_node* new_node = create_node(data);
+
+  sll_node* tail = get_tail(head);
+  tail->next = new_node;
+
+  return;
+}
+
+sll_node* sll_pop(sll_node** head)
+{
+  sll_node* tail = *head;
+  sll_node* before_tail;
+  while(tail->next != NULL)
+  {
+    before_tail = tail;
+    tail = tail->next;
+  }
+  before_tail->next = NULL;
+
+  return tail;
+}
+
+void sll_unshift(sll_node** head, i64 data)
+{
+  sll_node* new_node = create_node(data);
+  new_node->next = *head;
+  *head = new_node;
+}
+
+sll_node* sll_shift(sll_node** head)
+{
+  sll_node* old_head = *head;
+  sll_node* new_head = (*head)->next;
+  *head = new_head;
+  old_head->next = NULL;
+
+  return old_head;
+}
+
+void sll_insert_after(sll_node* node, i64 data)
+{
+  if (node == NULL)
+  {
+    printf("Cannot add node after NULL value\n");
+    return;
+  }
+
+  sll_node* new_node = create_node(data);
+  new_node->next = node->next;
+  node->next = new_node;
+}
+
+sll_node* sll_remove_after(sll_node* node)
+{
+  if (node == NULL)
+  {
+    printf("Cannot remove node after NULL value\n");
+    return NULL;
+  }
+
+  sll_node* old_node = node->next;
+  sll_node* next_node = old_node->next;
+  node->next = next_node;
+  old_node->next = NULL;
+
+  return old_node;
+}
+
+sll_node* sll_remove(sll_node** head, u32 position)
+{
+  sll_node* current = *head;
+  sll_node* prev_node;
+  sll_node* old_node;
+  u32 i = 0;
+  while (current != NULL && i <= position)
+  {
+    if (i == position)
+    {
+      if (prev_node == NULL)
+      {
+        *head = current->next;
+      }
+      else
+      {
+        prev_node->next = current->next;
+      }
+
+      old_node = current;
+      old_node->next = NULL;
+    }
+
+    ++i;
+    prev_node = current;
+    current = current->next;
+  }
+
+  if (old_node == NULL)
+  {
+    printf("Could not find valid node at position %d\n", position);
+  }
+
+  return old_node;
+}
+
+sll_node* sll_at(sll_node** head, u32 position)
+{
+  sll_node* current = *head;
+  sll_node* node;
+  u32 i = 0;
+  while (current != NULL && i <= position)
+  {
+    if (i == position)
+    {
+      node = current;
+    }
+
+    ++i;
+    current = current->next;
+  }
+
+  return node;
+}
+
+void sll_print(sll_node** head)
+{
+  sll_node* current = *head;
+  while (current != NULL)
+  {
+    printf(" %ld ", current->data);
+    current = current->next;
+  }
+  printf("\n");
+}
+
+b32 sll_search(sll_node** head, i64 data)
+{
+  b32 found = false;
+  sll_node* current = *head;
+  while (current != NULL && !found)
+  {
+    if (current->data == data)
+    {
+      found = true;
+    }
+    
+    current = current->next;
+  }
+
+  return found;
+}
+
+u32 sll_count(sll_node** head)
+{
+  sll_node* current = *head;
+  u32 count = 0;
+
+  while (current != NULL)
+  {
+    ++count;
+
+    current = current->next;
+  }
+
+  return count;
+}
