@@ -12,7 +12,7 @@ struct sll_node
   sll_node* next;
 };
 
-sll_node** sll_create(i64 data);
+sll_node** sll_create();
 void sll_destroy(sll_node** head);
 
 void sll_push(sll_node** head, i64 data);

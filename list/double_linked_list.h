@@ -13,7 +13,7 @@ struct dll_node
   dll_node* next;
 };
 
-dll_node** dll_create(i64 data);
+dll_node** dll_create();
 void dll_destroy(dll_node** head);
 
 void dll_push(dll_node** head, i64 data);

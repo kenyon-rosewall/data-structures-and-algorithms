@@ -8,8 +8,12 @@ void sll_test()
   printf("SINGLE LINKED LIST\n");
   printf("==================\n\n");
 
-  sll_node** head = sll_create(6);
-  printf("New list starting with 6:");
+  sll_node** head = sll_create();
+  printf("New list:");
+  sll_print(head);
+
+  sll_push(head, 6);
+  printf("Pushed 6:");
   sll_print(head);
   
   sll_unshift(head, 14);
@@ -96,8 +100,12 @@ void dll_test()
   printf("DOUBLE LINKED LIST\n");
   printf("==================\n\n");
 
-  dll_node** head = dll_create(6);
-  printf("New list starting with 6:");
+  dll_node** head = dll_create();
+  printf("New list:");
+  dll_print(head);
+
+  dll_push(head, 6);
+  printf("Pushed 6:");
   dll_print(head);
   
   dll_unshift(head, 14);

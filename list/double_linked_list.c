@@ -14,6 +14,12 @@ dll_node* dll_create_node(i64 data)
 
 dll_node* dll_get_tail(dll_node** head)
 {
+  if (*head == NULL)
+  {
+    printf("Cannot find tail of a null linked list\n");
+    return NULL;
+  }
+
   dll_node* tail = *head;
   while (tail->next != NULL)
   {
@@ -23,12 +29,10 @@ dll_node* dll_get_tail(dll_node** head)
   return tail;
 }
 
-dll_node** dll_create(i64 data)
+dll_node** dll_create()
 {
   dll_node** head = (dll_node**)malloc(sizeof(dll_node*));
-  dll_node* node = dll_create_node(data);
-  *head = node;
-
+  
   return head;
 }
 
@@ -50,15 +54,28 @@ void dll_push(dll_node** head, i64 data)
 {
   dll_node* new_node = dll_create_node(data);
 
-  dll_node* tail = dll_get_tail(head);
-  tail->next = new_node;
-  new_node->prev = tail;
+  if (*head == NULL)
+  {
+    *head = new_node;
+  }
+  else
+  {
+    dll_node* tail = dll_get_tail(head);
+    tail->next = new_node;
+    new_node->prev = tail;
+  }
 
   return;
 }
 
 dll_node* dll_pop(dll_node** head)
 {
+  if (*head == NULL)
+  {
+    printf("Cannot pop a node off of a NULL linked list\n");
+    return NULL;
+  }
+
   dll_node* tail = dll_get_tail(head);
 
   tail->prev->next = NULL;
@@ -70,19 +87,35 @@ dll_node* dll_pop(dll_node** head)
 void dll_unshift(dll_node** head, i64 data)
 {
   dll_node* new_node = dll_create_node(data);
+  
   new_node->next = *head;
-  (*head)->prev = new_node;
+  if (*head != NULL)
+  {
+    (*head)->prev = new_node;
+  }
   *head = new_node;
 }
 
 dll_node* dll_shift(dll_node** head)
 {
+  if (*head == NULL)
+  {
+    printf("Cannot shift a node off of a NULL linked list\n");
+    return NULL;
+  }
+
   dll_node* old_head = *head;
   dll_node* new_head = (*head)->next;
-  new_head->prev = NULL;
+  if (new_head != NULL)
+  {
+    new_head->prev = NULL;
+  }
   *head = new_head;
 
-  old_head->next = NULL;
+  if (old_head != NULL)
+  {
+    old_head->next = NULL;
+  }
 
   return old_head;
 }
@@ -169,6 +202,11 @@ dll_node* dll_at(dll_node** head, u32 position)
 
     ++i;
     current = current->next;
+  }
+
+  if (node == NULL)
+  {
+    printf("Could not find valid node at position %d\n", position);
   }
 
   return node;

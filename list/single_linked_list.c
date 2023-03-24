@@ -11,8 +11,14 @@ sll_node* sll_create_node(i64 data)
   return node;
 }
 
-sll_node* sll_get_tail(sll_node** head)
+sll_node* sll_get_tall(sll_node** head)
 {
+  if (*head == NULL)
+  {
+    printf("Cannot get tail of null linked list\n");
+    return NULL;
+  }
+
   sll_node* tail = *head;
   while (tail->next != NULL)
   {
@@ -22,11 +28,9 @@ sll_node* sll_get_tail(sll_node** head)
   return tail;
 }
 
-sll_node** sll_create(i64 data)
+sll_node** sll_create()
 {
   sll_node** head = (sll_node**)malloc(sizeof(sll_node*));
-  sll_node* node = sll_create_node(data);
-  *head = node;
 
   return head;
 }
@@ -49,14 +53,27 @@ void sll_push(sll_node** head, i64 data)
 {
   sll_node* new_node = sll_create_node(data);
 
-  sll_node* tail = sll_get_tail(head);
-  tail->next = new_node;
+  if (*head == NULL)
+  {
+    *head = new_node;
+  }
+  else
+  {
+    sll_node* tail = sll_get_tall(head);
+    tail->next = new_node;
+  }
 
   return;
 }
 
 sll_node* sll_pop(sll_node** head)
 {
+  if (*head == NULL)
+  {
+    printf("Cannot pop a node off of a NULL linked list\n");
+    return NULL;
+  }
+
   sll_node* tail = *head;
   sll_node* before_tail;
   while(tail->next != NULL)
@@ -72,12 +89,19 @@ sll_node* sll_pop(sll_node** head)
 void sll_unshift(sll_node** head, i64 data)
 {
   sll_node* new_node = sll_create_node(data);
+
   new_node->next = *head;
   *head = new_node;
 }
 
 sll_node* sll_shift(sll_node** head)
 {
+  if (*head == NULL)
+  {
+    printf("Cannot shift a node off of a NULL linked list\n");
+    return NULL;
+  }
+
   sll_node* old_head = *head;
   sll_node* new_head = (*head)->next;
   *head = new_head;
@@ -165,6 +189,11 @@ sll_node* sll_at(sll_node** head, u32 position)
 
     ++i;
     current = current->next;
+  }
+
+  if (node == NULL)
+  {
+    printf("Could not find valid node at position %d\n", position);
   }
 
   return node;
