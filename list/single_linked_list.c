@@ -31,6 +31,7 @@ sll_node* sll_get_tall(sll_node** head)
 sll_node** sll_create()
 {
   sll_node** head = (sll_node**)malloc(sizeof(sll_node*));
+  *head = NULL;
 
   return head;
 }

@@ -32,6 +32,7 @@ dll_node* dll_get_tail(dll_node** head)
 dll_node** dll_create()
 {
   dll_node** head = (dll_node**)malloc(sizeof(dll_node*));
+  *head = NULL;
   
   return head;
 }
