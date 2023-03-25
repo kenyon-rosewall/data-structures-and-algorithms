@@ -25,7 +25,7 @@ struct graph
 
 graph* graph_create(u32 number_of_nodes);
 void graph_destroy(graph* g);
-void graph_print(graph* g);
+void graph_dot(graph* g);
 
 b32 graph_adjacent(graph* g, u32 x, u32 y);
 i32* graph_neighbors(graph* g, u32 x);

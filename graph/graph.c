@@ -63,7 +63,7 @@ void graph_destroy(graph* g)
   }
 }
 
-void graph_print(graph* g)
+void graph_dot(graph* g)
 {
   if (g != NULL)
   {

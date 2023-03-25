@@ -211,6 +211,30 @@ void sll_print(sll_node** head)
   printf("\n");
 }
 
+void sll_dot(sll_node** head)
+{
+  printf("digraph SLL {\n");
+  printf("\tnode [shape=record]\n");
+  sll_node* current = *head;
+  u32 i = 0;
+  while (current != NULL)
+  {
+    if (current->next != NULL)
+    {
+      printf("\tn%d[label=\"node\\: n%d \\| data\\: %ld \\| next\\: \\-\\> n%d\"]\n", i, i, current->data, i+1);
+      printf("\tn%d -> n%d\n", i, i+1);
+    }
+    else
+    {
+      printf("\tn%d[label=\"node\\: n%d \\| data\\: %ld \\| next\\: \\-\\> NULL\"]\n", i, i, current->data);
+    }
+
+    ++i;
+    current = current->next;
+  }
+  printf("}");
+}
+
 i32 sll_search(sll_node** head, i64 data)
 {
   i32 position = -1;

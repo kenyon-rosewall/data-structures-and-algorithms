@@ -224,6 +224,37 @@ void dll_print(dll_node** head)
   printf("\n");
 }
 
+void dll_dot(dll_node** head)
+{
+  printf("digraph SLL {\n");
+  printf("\tnode [shape=record]\n");
+  dll_node* current = *head;
+  u32 i = 0;
+  while (current != NULL)
+  {
+    if (i == 0)
+    {
+      printf("\tn%d[label=\"node\\: n%d \\| prev\\: NULL \\| data\\: %ld \\| next\\: \\-\\> n%d\"]\n", i, i, current->data, i+1);
+      printf("\tn%d -> n%d\n", i, i+1);
+      printf("\tn%d -> n%d\n", i+1, i);
+    }
+    else if (current->next != NULL)
+    {
+      printf("\tn%d[label=\"node\\: n%d \\| prev\\: n%d \\| data\\: %ld \\| next\\: \\-\\> n%d\"]\n", i, i, i-1, current->data, i+1);
+      printf("\tn%d -> n%d\n", i, i+1);
+      printf("\tn%d -> n%d\n", i+1, i);
+    }
+    else
+    {
+      printf("\tn%d[label=\"node\\: n%d \\| prev\\: n%d \\| data\\: %ld \\| next\\: \\-\\> NULL\"]\n", i, i, i-1, current->data);
+    }
+
+    ++i;
+    current = current->next;
+  }
+  printf("}");
+}
+
 i32 dll_search(dll_node** head, i64 data)
 {
   i32 position = -1;

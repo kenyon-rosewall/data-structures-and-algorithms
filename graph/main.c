@@ -43,7 +43,7 @@ i32 main(i32 argc, char **argv)
 
   if (print_dot)
   {
-    graph_print(g);
+    graph_dot(g);
   }
   else
   {
