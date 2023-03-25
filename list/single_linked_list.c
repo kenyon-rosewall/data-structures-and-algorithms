@@ -39,7 +39,7 @@ sll_node** sll_create()
 void sll_destroy(sll_node** head)
 {
   sll_node* current = *head;
-  sll_node* next;
+  sll_node* next = NULL;
 
   while(current != NULL)
   {
@@ -76,7 +76,7 @@ sll_node* sll_pop(sll_node** head)
   }
 
   sll_node* tail = *head;
-  sll_node* before_tail;
+  sll_node* before_tail = NULL;
   while(tail->next != NULL)
   {
     before_tail = tail;
@@ -143,8 +143,8 @@ sll_node* sll_remove_after(sll_node* node)
 sll_node* sll_remove(sll_node** head, u32 position)
 {
   sll_node* current = *head;
-  sll_node* prev_node;
-  sll_node* old_node;
+  sll_node* prev_node = NULL;
+  sll_node* old_node = NULL;
   u32 i = 0;
   while (current != NULL && i <= position)
   {
@@ -179,7 +179,7 @@ sll_node* sll_remove(sll_node** head, u32 position)
 sll_node* sll_at(sll_node** head, u32 position)
 {
   sll_node* current = *head;
-  sll_node* node;
+  sll_node* node = NULL;
   u32 i = 0;
   while (current != NULL && i <= position)
   {
@@ -211,21 +211,23 @@ void sll_print(sll_node** head)
   printf("\n");
 }
 
-b32 sll_search(sll_node** head, i64 data)
+i32 sll_search(sll_node** head, i64 data)
 {
-  b32 found = false;
+  i32 position = -1;
   sll_node* current = *head;
-  while (current != NULL && !found)
+  u32 i = 0;
+  while (current != NULL && position < 0)
   {
     if (current->data == data)
     {
-      found = true;
+      position = i;
     }
     
+    ++i;
     current = current->next;
   }
 
-  return found;
+  return position;
 }
 
 u32 sll_count(sll_node** head)

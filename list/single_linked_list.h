@@ -27,7 +27,7 @@ sll_node* sll_remove(sll_node** head, u32 position);
 sll_node* sll_at(sll_node** head, u32 position);
 
 void sll_print(sll_node** head);
-b32 sll_search(sll_node** head, i64 data);
+i32 sll_search(sll_node** head, i64 data);
 u32 sll_count(sll_node** head);
 
 #endif // !SINGLE_LINKED_LIST_H

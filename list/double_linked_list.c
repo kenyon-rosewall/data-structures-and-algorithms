@@ -40,7 +40,7 @@ dll_node** dll_create()
 void dll_destroy(dll_node** head)
 {
   dll_node* current = *head;
-  dll_node* next;
+  dll_node* next = NULL;
 
   while(current != NULL)
   {
@@ -157,7 +157,7 @@ dll_node* dll_remove_after(dll_node* node)
 dll_node* dll_remove(dll_node** head, u32 position)
 {
   dll_node* current = *head;
-  dll_node* old_node;
+  dll_node* old_node = NULL;
   u32 i = 0;
   while (current != NULL && i <= position)
   {
@@ -192,7 +192,7 @@ dll_node* dll_remove(dll_node** head, u32 position)
 dll_node* dll_at(dll_node** head, u32 position)
 {
   dll_node* current = *head;
-  dll_node* node;
+  dll_node* node = NULL;
   u32 i = 0;
   while (current != NULL && i <= position)
   {
@@ -224,21 +224,23 @@ void dll_print(dll_node** head)
   printf("\n");
 }
 
-b32 dll_search(dll_node** head, i64 data)
+i32 dll_search(dll_node** head, i64 data)
 {
-  b32 found = false;
+  i32 position = -1;
   dll_node* current = *head;
-  while (current != NULL && !found)
+  u32 i = 0;
+  while (current != NULL && position < 0)
   {
     if (current->data == data)
     {
-      found = true;
+      position = i;
     }
     
+    ++i;
     current = current->next;
   }
 
-  return found;
+  return position;
 }
 
 u32 dll_count(dll_node** head)
