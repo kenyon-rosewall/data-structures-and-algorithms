@@ -38,16 +38,19 @@ sll_node** sll_create()
 
 void sll_destroy(sll_node** head)
 {
-  sll_node* current = *head;
-  sll_node* next = NULL;
-
-  while(current != NULL)
+  if (*head != NULL)
   {
-    next = current->next;
-    free(current);
-    current = next;
+    sll_node* current = *head;
+    sll_node* next = NULL;
+
+    while(current != NULL)
+    {
+      next = current->next;
+      free(current);
+      current = next;
+    }
+    *head = NULL;
   }
-  *head = NULL;
 }
 
 void sll_push(sll_node** head, i64 data)
@@ -202,37 +205,43 @@ sll_node* sll_at(sll_node** head, u32 position)
 
 void sll_print(sll_node** head)
 {
-  sll_node* current = *head;
-  while (current != NULL)
+  if (*head != NULL)
   {
-    printf(" %ld ", current->data);
-    current = current->next;
+    sll_node* current = *head;
+    while (current != NULL)
+    {
+      printf(" %ld ", current->data);
+      current = current->next;
+    }
+    printf("\n");
   }
-  printf("\n");
 }
 
 void sll_dot(sll_node** head)
 {
-  printf("digraph SLL {\n");
-  printf("\tnode [shape=record]\n");
-  sll_node* current = *head;
-  u32 i = 0;
-  while (current != NULL)
+  if (*head != NULL)
   {
-    if (current->next != NULL)
+    printf("digraph SLL {\n");
+    printf("\tnode [shape=record]\n");
+    sll_node* current = *head;
+    u32 i = 0;
+    while (current != NULL)
     {
-      printf("\tn%d[label=\"node\\: n%d \\| data\\: %ld \\| next\\: \\-\\> n%d\"]\n", i, i, current->data, i+1);
-      printf("\tn%d -> n%d\n", i, i+1);
-    }
-    else
-    {
-      printf("\tn%d[label=\"node\\: n%d \\| data\\: %ld \\| next\\: \\-\\> NULL\"]\n", i, i, current->data);
-    }
+      if (current->next != NULL)
+      {
+        printf("\tn%d[label=\"node\\: n%d \\| data\\: %ld \\| next\\: \\-\\> n%d\"]\n", i, i, current->data, i+1);
+        printf("\tn%d -> n%d\n", i, i+1);
+      }
+      else
+      {
+        printf("\tn%d[label=\"node\\: n%d \\| data\\: %ld \\| next\\: \\-\\> NULL\"]\n", i, i, current->data);
+      }
 
-    ++i;
-    current = current->next;
+      ++i;
+      current = current->next;
+    }
+    printf("}");
   }
-  printf("}");
 }
 
 i32 sll_search(sll_node** head, i64 data)

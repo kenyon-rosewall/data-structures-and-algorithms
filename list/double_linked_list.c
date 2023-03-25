@@ -39,16 +39,19 @@ dll_node** dll_create()
 
 void dll_destroy(dll_node** head)
 {
-  dll_node* current = *head;
-  dll_node* next = NULL;
-
-  while(current != NULL)
+  if (*head != NULL)
   {
-    next = current->next;
-    free(current);
-    current = next;
+    dll_node* current = *head;
+    dll_node* next = NULL;
+
+    while(current != NULL)
+    {
+      next = current->next;
+      free(current);
+      current = next;
+    }
+    *head = NULL;
   }
-  *head = NULL;
 }
 
 void dll_push(dll_node** head, i64 data)
@@ -215,44 +218,50 @@ dll_node* dll_at(dll_node** head, u32 position)
 
 void dll_print(dll_node** head)
 {
-  dll_node* current = *head;
-  while (current != NULL)
+  if (*head != NULL)
   {
-    printf(" %ld ", current->data);
-    current = current->next;
+    dll_node* current = *head;
+    while (current != NULL)
+    {
+      printf(" %ld ", current->data);
+      current = current->next;
+    }
+    printf("\n");
   }
-  printf("\n");
 }
 
 void dll_dot(dll_node** head)
 {
-  printf("digraph SLL {\n");
-  printf("\tnode [shape=record]\n");
-  dll_node* current = *head;
-  u32 i = 0;
-  while (current != NULL)
+  if (*head != NULL)
   {
-    if (i == 0)
+    printf("digraph SLL {\n");
+    printf("\tnode [shape=record]\n");
+    dll_node* current = *head;
+    u32 i = 0;
+    while (current != NULL)
     {
-      printf("\tn%d[label=\"node\\: n%d \\| prev\\: NULL \\| data\\: %ld \\| next\\: \\-\\> n%d\"]\n", i, i, current->data, i+1);
-      printf("\tn%d -> n%d\n", i, i+1);
-      printf("\tn%d -> n%d\n", i+1, i);
-    }
-    else if (current->next != NULL)
-    {
-      printf("\tn%d[label=\"node\\: n%d \\| prev\\: n%d \\| data\\: %ld \\| next\\: \\-\\> n%d\"]\n", i, i, i-1, current->data, i+1);
-      printf("\tn%d -> n%d\n", i, i+1);
-      printf("\tn%d -> n%d\n", i+1, i);
-    }
-    else
-    {
-      printf("\tn%d[label=\"node\\: n%d \\| prev\\: n%d \\| data\\: %ld \\| next\\: \\-\\> NULL\"]\n", i, i, i-1, current->data);
-    }
+      if (i == 0)
+      {
+        printf("\tn%d[label=\"node\\: n%d \\| prev\\: NULL \\| data\\: %ld \\| next\\: \\-\\> n%d\"]\n", i, i, current->data, i+1);
+        printf("\tn%d -> n%d\n", i, i+1);
+        printf("\tn%d -> n%d\n", i+1, i);
+      }
+      else if (current->next != NULL)
+      {
+        printf("\tn%d[label=\"node\\: n%d \\| prev\\: n%d \\| data\\: %ld \\| next\\: \\-\\> n%d\"]\n", i, i, i-1, current->data, i+1);
+        printf("\tn%d -> n%d\n", i, i+1);
+        printf("\tn%d -> n%d\n", i+1, i);
+      }
+      else
+      {
+        printf("\tn%d[label=\"node\\: n%d \\| prev\\: n%d \\| data\\: %ld \\| next\\: \\-\\> NULL\"]\n", i, i, i-1, current->data);
+      }
 
-    ++i;
-    current = current->next;
+      ++i;
+      current = current->next;
+    }
+    printf("}");
   }
-  printf("}");
 }
 
 i32 dll_search(dll_node** head, i64 data)
