@@ -13,9 +13,10 @@ struct btree_node
   btree_node* right;
 };
 
-btree_node** btree_create();
-void btree_destroy(btree_node** root);
+btree_node* btree_create();
+void btree_destroy(btree_node* root);
+void btree_print(btree_node* root);
 
-void btree_insert(btree_node* root, i32 value);
+btree_node* btree_insert(btree_node* root, i32 value);
 
 #endif // !BTREE_H
