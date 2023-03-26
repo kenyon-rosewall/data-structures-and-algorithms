@@ -29,16 +29,19 @@ i32 main(i32 argc, char **argv)
   btree_insert(root, 70);
   btree_insert(root, 60);
   btree_insert(root, 80);
+  btree_insert(root, 35);
+  btree_insert(root, 75);
+  btree_insert(root, 41);
 
   if (dot)
   {
-
+    btree_dot(root);
   }
   else
   {
     btree_print(root);
-    printf("\n");
   }
+  printf("\n");
 
   return 0;
 }

@@ -16,6 +16,7 @@ struct btree_node
 btree_node* btree_create();
 void btree_destroy(btree_node* root);
 void btree_print(btree_node* root);
+void btree_dot(btree_node* root);
 
 btree_node* btree_insert(btree_node* root, i32 value);
 
