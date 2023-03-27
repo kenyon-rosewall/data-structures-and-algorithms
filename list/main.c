@@ -120,7 +120,7 @@ void sll_test(b32 dot)
   if (!dot)
   {
     sll_node* at = sll_at(head, 3);
-    printf("The node at position 3 is: %ld \n", at->data);
+    printf("The node at position 3 is: %d \n", at->data);
 
     printf("Searching for the number 73: ");
     sll_search(head, 73) ? printf("YES \n") : printf("NO \n");
@@ -134,7 +134,7 @@ void sll_test(b32 dot)
     printf("Current list is:");
     sll_print(head);
 
-    printf("The sum of the removed elements should be 28: %ld \n", popped->data + shifted->data + removed_after->data + removed->data);
+    printf("The sum of the removed elements should be 28: %d \n", popped->data + shifted->data + removed_after->data + removed->data);
     printf("The count of the list should be 6: %d \n", sll_count(head));
   }
 
@@ -271,7 +271,7 @@ void dll_test(b32 dot)
   if (!dot)
   {
     dll_node* at = dll_at(head, 3);
-    printf("The node at position 3 is: %ld \n", at->data);
+    printf("The node at position 3 is: %d \n", at->data);
 
     printf("Searching for the number 73: ");
     dll_search(head, 73) ? printf("YES \n") : printf("NO \n");
@@ -285,7 +285,7 @@ void dll_test(b32 dot)
     printf("Current list is:");
     dll_print(head);
 
-    printf("The sum of the removed elements should be 28: %ld \n", popped->data + shifted->data + removed_after->data + removed->data);
+    printf("The sum of the removed elements should be 28: %d \n", popped->data + shifted->data + removed_after->data + removed->data);
     printf("The count of the list should be 6: %d \n", dll_count(head));
   }
 

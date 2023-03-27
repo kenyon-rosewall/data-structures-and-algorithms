@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "single_linked_list.h"
 
-sll_node* sll_create_node(i64 data)
+sll_node* sll_create_node(i32 data)
 {
   sll_node* node = (sll_node*)malloc(sizeof(sll_node));
   node->data = data;
@@ -53,7 +53,7 @@ void sll_destroy(sll_node** head)
   }
 }
 
-void sll_push(sll_node** head, i64 data)
+void sll_push(sll_node** head, i32 data)
 {
   sll_node* new_node = sll_create_node(data);
 
@@ -90,7 +90,7 @@ sll_node* sll_pop(sll_node** head)
   return tail;
 }
 
-void sll_unshift(sll_node** head, i64 data)
+void sll_unshift(sll_node** head, i32 data)
 {
   sll_node* new_node = sll_create_node(data);
 
@@ -114,7 +114,7 @@ sll_node* sll_shift(sll_node** head)
   return old_head;
 }
 
-void sll_insert_after(sll_node* node, i64 data)
+void sll_insert_after(sll_node* node, i32 data)
 {
   if (node == NULL)
   {
@@ -210,7 +210,7 @@ void sll_print(sll_node** head)
     sll_node* current = *head;
     while (current != NULL)
     {
-      printf(" %ld ", current->data);
+      printf(" %d ", current->data);
       current = current->next;
     }
     printf("\n");
@@ -229,12 +229,12 @@ void sll_dot(sll_node** head)
     {
       if (current->next != NULL)
       {
-        printf("\tn%d[label=\"node\\: n%d \\| data\\: %ld \\| next\\: \\-\\> n%d\"]\n", i, i, current->data, i+1);
+        printf("\tn%d[label=\"node\\: n%d \\| data\\: %d \\| next\\: \\-\\> n%d\"]\n", i, i, current->data, i+1);
         printf("\tn%d -> n%d\n", i, i+1);
       }
       else
       {
-        printf("\tn%d[label=\"node\\: n%d \\| data\\: %ld \\| next\\: \\-\\> NULL\"]\n", i, i, current->data);
+        printf("\tn%d[label=\"node\\: n%d \\| data\\: %d \\| next\\: \\-\\> NULL\"]\n", i, i, current->data);
       }
 
       ++i;
@@ -244,7 +244,7 @@ void sll_dot(sll_node** head)
   }
 }
 
-i32 sll_search(sll_node** head, i64 data)
+i32 sll_search(sll_node** head, i32 data)
 {
   i32 position = -1;
   sll_node* current = *head;

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "double_linked_list.h"
 
-dll_node* dll_create_node(i64 data)
+dll_node* dll_create_node(i32 data)
 {
   dll_node* node = (dll_node*)malloc(sizeof(dll_node));
   node->data = data;
@@ -54,7 +54,7 @@ void dll_destroy(dll_node** head)
   }
 }
 
-void dll_push(dll_node** head, i64 data)
+void dll_push(dll_node** head, i32 data)
 {
   dll_node* new_node = dll_create_node(data);
 
@@ -88,7 +88,7 @@ dll_node* dll_pop(dll_node** head)
   return tail;
 }
 
-void dll_unshift(dll_node** head, i64 data)
+void dll_unshift(dll_node** head, i32 data)
 {
   dll_node* new_node = dll_create_node(data);
   
@@ -124,7 +124,7 @@ dll_node* dll_shift(dll_node** head)
   return old_head;
 }
 
-void dll_insert_after(dll_node* node, i64 data)
+void dll_insert_after(dll_node* node, i32 data)
 {
   if (node == NULL)
   {
@@ -223,7 +223,7 @@ void dll_print(dll_node** head)
     dll_node* current = *head;
     while (current != NULL)
     {
-      printf(" %ld ", current->data);
+      printf(" %d ", current->data);
       current = current->next;
     }
     printf("\n");
@@ -242,19 +242,19 @@ void dll_dot(dll_node** head)
     {
       if (i == 0)
       {
-        printf("\tn%d[label=\"node\\: n%d \\| prev\\: NULL \\| data\\: %ld \\| next\\: \\-\\> n%d\"]\n", i, i, current->data, i+1);
+        printf("\tn%d[label=\"node\\: n%d \\| prev\\: NULL \\| data\\: %d \\| next\\: \\-\\> n%d\"]\n", i, i, current->data, i+1);
         printf("\tn%d -> n%d\n", i, i+1);
         printf("\tn%d -> n%d\n", i+1, i);
       }
       else if (current->next != NULL)
       {
-        printf("\tn%d[label=\"node\\: n%d \\| prev\\: n%d \\| data\\: %ld \\| next\\: \\-\\> n%d\"]\n", i, i, i-1, current->data, i+1);
+        printf("\tn%d[label=\"node\\: n%d \\| prev\\: n%d \\| data\\: %d \\| next\\: \\-\\> n%d\"]\n", i, i, i-1, current->data, i+1);
         printf("\tn%d -> n%d\n", i, i+1);
         printf("\tn%d -> n%d\n", i+1, i);
       }
       else
       {
-        printf("\tn%d[label=\"node\\: n%d \\| prev\\: n%d \\| data\\: %ld \\| next\\: \\-\\> NULL\"]\n", i, i, i-1, current->data);
+        printf("\tn%d[label=\"node\\: n%d \\| prev\\: n%d \\| data\\: %d \\| next\\: \\-\\> NULL\"]\n", i, i, i-1, current->data);
       }
 
       ++i;
@@ -264,7 +264,7 @@ void dll_dot(dll_node** head)
   }
 }
 
-i32 dll_search(dll_node** head, i64 data)
+i32 dll_search(dll_node** head, i32 data)
 {
   i32 position = -1;
   dll_node* current = *head;
