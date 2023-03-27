@@ -6,6 +6,39 @@
 #include "types.h"
 #include "list/single_linked_list.h"
 
+// 
+// Graphs
+//
+// I chose the "id" of the graph node to be an unsigned 32-bit int, assuming that in this 
+// implementation, they stand for the ids of the nodes rather than a place to store any random
+// type of data, like a string. But again, you could easily update the id data type and a few
+// methods to extend this to be any data type.
+//
+// To store the nodes sparsely, I chose to implement an array of single linked lists to represent
+// the nodes which are connected. The alternative would be to create an two-dimensional array,
+// which grows exponentially as the nodes grow. Eventually it becomes hard to search. Also, this
+// graph is directed. You could implement undirected by adding both directions and adjusting when
+// edge_count gets incremented/decremented. It would be a little work, but it's relatively
+// trivial.
+//
+// I was also going to make the graphs weighted at the beginning, but since I decided to utilize
+// the single linked list from earlier, I didn't conveniently have another property to store the 
+// weight. Of course, the easiest way to do this would be to just create a single linked list
+// with an extra property that help the weight of that directed edge. Then you could write some
+// methods to calculate the cost of traveling certain paths. Currently, consider all edges to be
+// equal to 1.
+// 
+
+// 
+// TODO
+// * Add weight
+// * Implement error handling for realloc returning NULL
+// * Matrix into a graph
+// * Graph searching functions
+// * Detect any and all cycles in the graph
+// * Shortest path between two nodes (considering weight too, Dijkstra's, DFS, etc )
+//
+
 typedef struct graph_node graph_node;
 struct graph_node
 {

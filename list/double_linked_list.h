@@ -5,6 +5,18 @@
 
 #include "types.h"
 
+// 
+// Double Linked Lists
+// 
+// This is essentially the exact same implementation of single linked lists and doesn't need
+// a repeated explanation. Read the Single Linked Lists description first.
+// 
+// The only real separate note I could add is that the main.c essentially can be switched
+// between single linked lists and double linked lists by commenting out the respective 
+// function. The only reason for this is because of how the Makefile builds only one PDF from
+// the Graphviz dot output. Feel free to change around and check what's going on.
+// 
+
 typedef struct dll_node dll_node;
 struct dll_node
 {
