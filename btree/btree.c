@@ -12,6 +12,24 @@ btree_node* btree_create_node(i32 value)
   return node;
 }
 
+btree_node* btree_minimum_node(btree_node* node)
+{
+  if (node == NULL)
+  {
+    printf("Cannot find minimum value node of a null btree\n");
+    return NULL;
+  }
+
+  btree_node* current = node;
+
+  while (current && current->left != NULL)
+  {
+    current = current->left;
+  }
+
+  return current;
+}
+
 btree_node* btree_create()
 {
   btree_node* root = NULL;
@@ -83,4 +101,62 @@ btree_node* btree_insert(btree_node* node, i32 value)
   }
 
   return node;
+}
+
+btree_node* btree_delete(btree_node* node, i32 value)
+{
+  if (node == NULL)
+  {
+    return node;
+  }
+
+  if (value < node->value)
+  {
+    node->left = btree_delete(node->left, value);
+  }
+  else if (value > node->value)
+  {
+    node->right = btree_delete(node->right, value);
+  }
+  else
+  {
+    if (node->left == NULL)
+    {
+      btree_node* temp_node = node->right;
+      free(node);
+      return temp_node;
+    }
+    else if (node->right == NULL)
+    {
+      btree_node* temp_node = node->left;
+      free(node);
+      return temp_node;
+    }
+
+    btree_node* temp_node = btree_minimum_node(node->right);
+    node->value = temp_node->value;
+    node->right = btree_delete(node->right, temp_node->value);
+  }
+
+  return node;
+}
+
+b32 btree_search(btree_node* node, i32 value)
+{
+  if (node == NULL)
+  {
+    return false;
+  }
+
+  if (node->value == value)
+  {
+    return true;
+  }
+
+  if (node->value < value)
+  {
+    return btree_search(node->right, value);
+  }
+
+  return btree_search(node->left, value);
 }

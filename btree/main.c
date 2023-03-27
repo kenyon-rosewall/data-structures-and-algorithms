@@ -33,6 +33,8 @@ i32 main(i32 argc, char **argv)
   btree_insert(root, 75);
   btree_insert(root, 41);
 
+  btree_delete(root, 30);
+
   if (dot)
   {
     btree_dot(root);
@@ -40,6 +42,13 @@ i32 main(i32 argc, char **argv)
   else
   {
     btree_print(root);
+    printf("\n");
+    
+    printf("BST has 35: ");
+    btree_search(root, 35) ? printf("YES\n") : printf("NO\n");
+
+    printf("BST has 30: ");
+    btree_search(root, 30) ? printf("YES\n") : printf("NO\n");
   }
   printf("\n");
 
