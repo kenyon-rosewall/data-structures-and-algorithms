@@ -41,7 +41,16 @@ i32 main(i32 argc, char **argv)
   }
   else
   {
-    btree_print(root);
+    printf("Inorder: \n");
+    btree_print(root, BtreePrintOrder_Inorder);
+    printf("\n");
+    
+    printf("Preorder: \n");
+    btree_print(root, BtreePrintOrder_Preorder);
+    printf("\n");
+    
+    printf("Postorder: \n");
+    btree_print(root, BtreePrintOrder_Postorder);
     printf("\n");
     
     printf("BST has 35: ");

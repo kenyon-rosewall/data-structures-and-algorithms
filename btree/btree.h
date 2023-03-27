@@ -13,9 +13,16 @@ struct btree_node
   btree_node* right;
 };
 
+enum BtreePrintOrder
+{
+  BtreePrintOrder_Inorder,
+  BtreePrintOrder_Preorder,
+  BtreePrintOrder_Postorder
+};
+
 btree_node* btree_create();
 void btree_destroy(btree_node* root);
-void btree_print(btree_node* root);
+void btree_print(btree_node* root, enum BtreePrintOrder order);
 void btree_dot(btree_node* root);
 
 btree_node* btree_insert(btree_node* node, i32 value);

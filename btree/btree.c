@@ -45,13 +45,54 @@ void btree_destroy(btree_node* root)
   }
 }
 
-void btree_print(btree_node* root)
+void btree_print_inorder(btree_node* root)
 {
   if (root != NULL)
   {
-    btree_print(root->left);
+    btree_print_inorder(root->left);
     printf("%d ", root->value);
-    btree_print(root->right);
+    btree_print_inorder(root->right);
+  }
+}
+
+void btree_print_preorder(btree_node* root)
+{
+  if (root != NULL)
+  {
+    printf("%d ", root->value);
+    btree_print_preorder(root->left);
+    btree_print_preorder(root->right);
+  }
+}
+
+void btree_print_postorder(btree_node* root)
+{
+  if (root != NULL)
+  {
+    btree_print_postorder(root->left);
+    btree_print_postorder(root->right);
+    printf("%d ", root->value);
+  }
+}
+
+void btree_print(btree_node* root, enum BtreePrintOrder order)
+{
+  switch (order)
+  {
+    case BtreePrintOrder_Inorder:
+    {
+      btree_print_inorder(root);
+    } break;
+
+    case BtreePrintOrder_Preorder:
+    {
+      btree_print_preorder(root);
+    } break;
+
+    case BtreePrintOrder_Postorder:
+    {
+      btree_print_postorder(root);
+    } break;
   }
 }
 
