@@ -11,7 +11,7 @@ sll_node* sll_create_node(i64 data)
   return node;
 }
 
-sll_node* sll_get_tall(sll_node** head)
+sll_node* sll_get_tail(sll_node** head)
 {
   if (*head == NULL)
   {
@@ -63,7 +63,7 @@ void sll_push(sll_node** head, i64 data)
   }
   else
   {
-    sll_node* tail = sll_get_tall(head);
+    sll_node* tail = sll_get_tail(head);
     tail->next = new_node;
   }
 
