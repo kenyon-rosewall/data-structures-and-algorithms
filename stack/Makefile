@@ -4,7 +4,7 @@ RM      = rm -fr
 BUILD_DIR = build
 
 BIN			= $(BUILD_DIR)/main
-OBJ			= $(BUILD_DIR)/main.o $(BUILD_DIR)/-nark.o
+OBJ			= $(BUILD_DIR)/main.o $(BUILD_DIR)/stack.o
 
 all: $(BIN) vis
 
