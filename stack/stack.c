@@ -53,6 +53,7 @@ void stack_push(stack* s, i32 item)
 {
   if (stack_full(s))
   {
+    printf("Stack Overflow!\n");
     return;
   }
 

@@ -35,8 +35,11 @@ i32 main(i32 argc, char **argv)
   else
   {
     stack_print(s);
+    printf("Stack top is %d\n", stack_peek(s));
     printf("Popped value is %d\n", popped);
   }
+
+  stack_destroy(s);
 
   return 0;
 }
