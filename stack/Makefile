@@ -15,7 +15,7 @@ $(BUILD_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c $^ -o $@
 
 vis:
-	$(BUILD_DIR)/main dot | dot -Tpdf > $(BUILD_DIR)/vis.pdf
+#	$(BUILD_DIR)/main dot | dot -Tpdf > $(BUILD_DIR)/vis.pdf
 
 clean:
 	$(RM) $(BIN) $(OBJ) $(BUILD_DIR)/vis.pdf
