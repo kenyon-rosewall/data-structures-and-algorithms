@@ -28,6 +28,15 @@
 // methods to calculate the cost of traveling certain paths. Currently, consider all edges to be
 // equal to 1.
 // 
+// I wasn't exactly sure of how I wanted to return neighbors. In a modern language, I would definitely
+// just return an array or list of integers that would be sized appropriately. That's not possible 
+// exactly in C, so I did something a little experimental for me. I tried to do something as close
+// as possible to that rather then just return an array that was the same as the size of nodes
+// and a valid nodes were from 0 to neighbor count - 1 and everything else -1. It just felt bad.
+// So I went with a dynamically allocated array that reallocates based on how big it gets. Then
+// I add a sentinel of sorts to mark the end of the array by adding one more element as -1. Then
+// you can loop through the array until the element is equal to -1.
+// 
 
 // 
 // TODO
