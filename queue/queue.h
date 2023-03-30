@@ -15,7 +15,9 @@
 
 // 
 // TODO
-// * 
+// * Linked list implementation of a queue
+// * Add a priority layer (multiple queues that have different enum QueuePriority)
+// * Search queue for item
 // 
 
 typedef struct queue queue;
