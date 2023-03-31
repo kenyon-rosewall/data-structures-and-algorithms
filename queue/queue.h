@@ -5,20 +5,20 @@
 
 #include "types.h"
 
-// 
+//
 // Queues
 //
 // I did pretty much the same thing for the queues that I did for the stacks, so if there is
-// anything that I didn't cover here, reading that description might straightened something 
+// anything that I didn't cover here, reading that description might straightened something
 // out.
 //
 
-// 
+//
 // TODO
 // * Linked list implementation of a queue
 // * Add a priority layer (multiple queues that have different enum QueuePriority)
 // * Search queue for item
-// 
+//
 
 typedef struct queue queue;
 struct queue
@@ -28,21 +28,21 @@ struct queue
   i32 size;
   u32 capacity;
 
-  i32* queue_array;
+  i32 *queue_array;
 };
 
-queue* queue_create(u32 capacity);
-void queue_destroy(queue* q);
-void queue_print(queue* q);
+queue *queue_create(u32 capacity);
+void queue_destroy(queue *q);
+void queue_print(queue *q);
 
-b32 queue_empty(queue* q);
-b32 queue_full(queue* q);
+b32 queue_empty(queue *q);
+b32 queue_full(queue *q);
 
-void queue_enqueue(queue* q, i32 value);
-i32 queue_dequeue(queue* q);
+void queue_enqueue(queue *q, i32 value);
+i32 queue_dequeue(queue *q);
 
-i32 queue_front(queue* q);
-i32 queue_rear(queue* q);
-u32 queue_size(queue* q);
+i32 queue_front(queue *q);
+i32 queue_rear(queue *q);
+u32 queue_size(queue *q);
 
 #endif // !OUEUE_H

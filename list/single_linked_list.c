@@ -2,16 +2,16 @@
 #include <stdio.h>
 #include "single_linked_list.h"
 
-sll_node* sll_create_node(i32 data)
+sll_node *sll_create_node(i32 data)
 {
-  sll_node* node = (sll_node*)malloc(sizeof(sll_node));
+  sll_node *node = (sll_node *)malloc(sizeof(sll_node));
   node->data = data;
   node->next = NULL;
 
   return node;
 }
 
-sll_node* sll_get_tail(sll_node** head)
+sll_node *sll_get_tail(sll_node **head)
 {
   if (*head == NULL)
   {
@@ -19,7 +19,7 @@ sll_node* sll_get_tail(sll_node** head)
     return NULL;
   }
 
-  sll_node* tail = *head;
+  sll_node *tail = *head;
   while (tail->next != NULL)
   {
     tail = tail->next;
@@ -28,22 +28,22 @@ sll_node* sll_get_tail(sll_node** head)
   return tail;
 }
 
-sll_node** sll_create()
+sll_node **sll_create()
 {
-  sll_node** head = (sll_node**)malloc(sizeof(sll_node*));
+  sll_node **head = (sll_node **)malloc(sizeof(sll_node *));
   *head = NULL;
 
   return head;
 }
 
-void sll_destroy(sll_node** head)
+void sll_destroy(sll_node **head)
 {
   if (*head != NULL)
   {
-    sll_node* current = *head;
-    sll_node* next = NULL;
+    sll_node *current = *head;
+    sll_node *next = NULL;
 
-    while(current != NULL)
+    while (current != NULL)
     {
       next = current->next;
       free(current);
@@ -53,9 +53,9 @@ void sll_destroy(sll_node** head)
   }
 }
 
-void sll_push(sll_node** head, i32 data)
+void sll_push(sll_node **head, i32 data)
 {
-  sll_node* new_node = sll_create_node(data);
+  sll_node *new_node = sll_create_node(data);
 
   if (*head == NULL)
   {
@@ -63,14 +63,14 @@ void sll_push(sll_node** head, i32 data)
   }
   else
   {
-    sll_node* tail = sll_get_tail(head);
+    sll_node *tail = sll_get_tail(head);
     tail->next = new_node;
   }
 
   return;
 }
 
-sll_node* sll_pop(sll_node** head)
+sll_node *sll_pop(sll_node **head)
 {
   if (*head == NULL)
   {
@@ -78,9 +78,9 @@ sll_node* sll_pop(sll_node** head)
     return NULL;
   }
 
-  sll_node* tail = *head;
-  sll_node* before_tail = NULL;
-  while(tail->next != NULL)
+  sll_node *tail = *head;
+  sll_node *before_tail = NULL;
+  while (tail->next != NULL)
   {
     before_tail = tail;
     tail = tail->next;
@@ -90,15 +90,15 @@ sll_node* sll_pop(sll_node** head)
   return tail;
 }
 
-void sll_unshift(sll_node** head, i32 data)
+void sll_unshift(sll_node **head, i32 data)
 {
-  sll_node* new_node = sll_create_node(data);
+  sll_node *new_node = sll_create_node(data);
 
   new_node->next = *head;
   *head = new_node;
 }
 
-sll_node* sll_shift(sll_node** head)
+sll_node *sll_shift(sll_node **head)
 {
   if (*head == NULL)
   {
@@ -106,15 +106,15 @@ sll_node* sll_shift(sll_node** head)
     return NULL;
   }
 
-  sll_node* old_head = *head;
-  sll_node* new_head = (*head)->next;
+  sll_node *old_head = *head;
+  sll_node *new_head = (*head)->next;
   *head = new_head;
   old_head->next = NULL;
 
   return old_head;
 }
 
-void sll_insert_after(sll_node* node, i32 data)
+void sll_insert_after(sll_node *node, i32 data)
 {
   if (node == NULL)
   {
@@ -122,12 +122,12 @@ void sll_insert_after(sll_node* node, i32 data)
     return;
   }
 
-  sll_node* new_node = sll_create_node(data);
+  sll_node *new_node = sll_create_node(data);
   new_node->next = node->next;
   node->next = new_node;
 }
 
-sll_node* sll_remove_after(sll_node* node)
+sll_node *sll_remove_after(sll_node *node)
 {
   if (node == NULL)
   {
@@ -135,19 +135,19 @@ sll_node* sll_remove_after(sll_node* node)
     return NULL;
   }
 
-  sll_node* old_node = node->next;
-  sll_node* next_node = old_node->next;
+  sll_node *old_node = node->next;
+  sll_node *next_node = old_node->next;
   node->next = next_node;
   old_node->next = NULL;
 
   return old_node;
 }
 
-sll_node* sll_remove(sll_node** head, u32 position)
+sll_node *sll_remove(sll_node **head, u32 position)
 {
-  sll_node* current = *head;
-  sll_node* prev_node = NULL;
-  sll_node* old_node = NULL;
+  sll_node *current = *head;
+  sll_node *prev_node = NULL;
+  sll_node *old_node = NULL;
   u32 i = 0;
   while (current != NULL && i <= position)
   {
@@ -179,10 +179,10 @@ sll_node* sll_remove(sll_node** head, u32 position)
   return old_node;
 }
 
-sll_node* sll_at(sll_node** head, u32 position)
+sll_node *sll_at(sll_node **head, u32 position)
 {
-  sll_node* current = *head;
-  sll_node* node = NULL;
+  sll_node *current = *head;
+  sll_node *node = NULL;
   u32 i = 0;
   while (current != NULL && i <= position)
   {
@@ -203,11 +203,11 @@ sll_node* sll_at(sll_node** head, u32 position)
   return node;
 }
 
-void sll_print(sll_node** head)
+void sll_print(sll_node **head)
 {
   if (*head != NULL)
   {
-    sll_node* current = *head;
+    sll_node *current = *head;
     while (current != NULL)
     {
       printf(" %d ", current->data);
@@ -217,20 +217,20 @@ void sll_print(sll_node** head)
   }
 }
 
-void sll_dot(sll_node** head)
+void sll_dot(sll_node **head)
 {
   if (*head != NULL)
   {
     printf("digraph SLL {\n");
     printf("\tnode [shape=record]\n");
-    sll_node* current = *head;
+    sll_node *current = *head;
     u32 i = 0;
     while (current != NULL)
     {
       if (current->next != NULL)
       {
-        printf("\tn%d[label=\"node\\: n%d \\| data\\: %d \\| next\\: \\-\\> n%d\"]\n", i, i, current->data, i+1);
-        printf("\tn%d -> n%d\n", i, i+1);
+        printf("\tn%d[label=\"node\\: n%d \\| data\\: %d \\| next\\: \\-\\> n%d\"]\n", i, i, current->data, i + 1);
+        printf("\tn%d -> n%d\n", i, i + 1);
       }
       else
       {
@@ -244,10 +244,10 @@ void sll_dot(sll_node** head)
   }
 }
 
-i32 sll_search(sll_node** head, i32 data)
+i32 sll_search(sll_node **head, i32 data)
 {
   i32 position = -1;
-  sll_node* current = *head;
+  sll_node *current = *head;
   u32 i = 0;
   while (current != NULL && position < 0)
   {
@@ -255,7 +255,7 @@ i32 sll_search(sll_node** head, i32 data)
     {
       position = i;
     }
-    
+
     ++i;
     current = current->next;
   }
@@ -263,9 +263,9 @@ i32 sll_search(sll_node** head, i32 data)
   return position;
 }
 
-u32 sll_count(sll_node** head)
+u32 sll_count(sll_node **head)
 {
-  sll_node* current = *head;
+  sll_node *current = *head;
   u32 count = 0;
 
   while (current != NULL)

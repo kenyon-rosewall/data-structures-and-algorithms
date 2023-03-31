@@ -21,7 +21,7 @@ i32 main(i32 argc, char **argv)
 {
   b32 dot = is_dot(argc, argv);
 
-  btree_node* root = btree_create();
+  btree_node *root = btree_create();
   root = btree_insert(root, 50);
   btree_insert(root, 30);
   btree_insert(root, 20);
@@ -44,15 +44,15 @@ i32 main(i32 argc, char **argv)
     printf("Inorder: \n");
     btree_print(root, BtreePrintOrder_Inorder);
     printf("\n");
-    
+
     printf("Preorder: \n");
     btree_print(root, BtreePrintOrder_Preorder);
     printf("\n");
-    
+
     printf("Postorder: \n");
     btree_print(root, BtreePrintOrder_Postorder);
     printf("\n");
-    
+
     printf("BST has 35: ");
     btree_search(root, 35) ? printf("YES\n") : printf("NO\n");
 

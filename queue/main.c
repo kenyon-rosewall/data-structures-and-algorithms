@@ -3,7 +3,7 @@
 
 i32 main(i32 argc, char **argv)
 {
-  queue* q = queue_create(5);
+  queue *q = queue_create(5);
 
   printf("Queue's size is %d\n", q->size);
 

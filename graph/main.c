@@ -7,7 +7,7 @@
 i32 main(i32 argc, char **argv)
 {
   u32 node_count = 6;
-  graph* g = graph_create(node_count);
+  graph *g = graph_create(node_count);
 
   graph_add_edge(g, 0, 1);
   graph_add_edge(g, 1, 2);
@@ -48,11 +48,11 @@ i32 main(i32 argc, char **argv)
   else
   {
     u32 node_num = 6;
-    i32* neighbors = graph_neighbors(g, node_num);
+    i32 *neighbors = graph_neighbors(g, node_num);
     printf("Neighbors of %d: ", node_num);
     for (u32 i = 0;
-      neighbors[i] != -1;
-      ++i)
+         neighbors[i] != -1;
+         ++i)
     {
       printf("%d ", neighbors[i]);
     }

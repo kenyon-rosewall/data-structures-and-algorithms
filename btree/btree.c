@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include "btree.h"
 
-btree_node* btree_create_node(i32 value)
+btree_node *btree_create_node(i32 value)
 {
-  btree_node* node = (btree_node*)malloc(sizeof(btree_node));
+  btree_node *node = (btree_node *)malloc(sizeof(btree_node));
   node->value = value;
   node->left = NULL;
   node->right = NULL;
@@ -12,7 +12,7 @@ btree_node* btree_create_node(i32 value)
   return node;
 }
 
-btree_node* btree_minimum_node(btree_node* node)
+btree_node *btree_minimum_node(btree_node *node)
 {
   if (node == NULL)
   {
@@ -20,7 +20,7 @@ btree_node* btree_minimum_node(btree_node* node)
     return NULL;
   }
 
-  btree_node* current = node;
+  btree_node *current = node;
 
   while (current && current->left != NULL)
   {
@@ -30,14 +30,14 @@ btree_node* btree_minimum_node(btree_node* node)
   return current;
 }
 
-btree_node* btree_create()
+btree_node *btree_create()
 {
-  btree_node* root = NULL;
+  btree_node *root = NULL;
 
   return root;
 }
 
-void btree_destroy(btree_node* root)
+void btree_destroy(btree_node *root)
 {
   if (root != NULL)
   {
@@ -45,7 +45,7 @@ void btree_destroy(btree_node* root)
   }
 }
 
-void btree_print_inorder(btree_node* root)
+void btree_print_inorder(btree_node *root)
 {
   if (root != NULL)
   {
@@ -55,7 +55,7 @@ void btree_print_inorder(btree_node* root)
   }
 }
 
-void btree_print_preorder(btree_node* root)
+void btree_print_preorder(btree_node *root)
 {
   if (root != NULL)
   {
@@ -65,7 +65,7 @@ void btree_print_preorder(btree_node* root)
   }
 }
 
-void btree_print_postorder(btree_node* root)
+void btree_print_postorder(btree_node *root)
 {
   if (root != NULL)
   {
@@ -75,28 +75,31 @@ void btree_print_postorder(btree_node* root)
   }
 }
 
-void btree_print(btree_node* root, enum BtreePrintOrder order)
+void btree_print(btree_node *root, enum BtreePrintOrder order)
 {
   switch (order)
   {
-    case BtreePrintOrder_Inorder:
-    {
-      btree_print_inorder(root);
-    } break;
+  case BtreePrintOrder_Inorder:
+  {
+    btree_print_inorder(root);
+  }
+  break;
 
-    case BtreePrintOrder_Preorder:
-    {
-      btree_print_preorder(root);
-    } break;
+  case BtreePrintOrder_Preorder:
+  {
+    btree_print_preorder(root);
+  }
+  break;
 
-    case BtreePrintOrder_Postorder:
-    {
-      btree_print_postorder(root);
-    } break;
+  case BtreePrintOrder_Postorder:
+  {
+    btree_print_postorder(root);
+  }
+  break;
   }
 }
 
-void btree_dot_print(btree_node* node)
+void btree_dot_print(btree_node *node)
 {
   if (node == NULL)
   {
@@ -115,7 +118,7 @@ void btree_dot_print(btree_node* node)
   btree_dot_print(node->right);
 }
 
-void btree_dot(btree_node* root)
+void btree_dot(btree_node *root)
 {
   printf("digraph BST {\n");
   printf("\tnode [fontname=\"Arial\"]\n");
@@ -126,9 +129,10 @@ void btree_dot(btree_node* root)
   printf("}");
 }
 
-btree_node* btree_insert(btree_node* node, i32 value)
+btree_node *btree_insert(btree_node *node, i32 value)
 {
-  if (node == NULL) {
+  if (node == NULL)
+  {
     return btree_create_node(value);
   }
 
@@ -144,7 +148,7 @@ btree_node* btree_insert(btree_node* node, i32 value)
   return node;
 }
 
-btree_node* btree_delete(btree_node* node, i32 value)
+btree_node *btree_delete(btree_node *node, i32 value)
 {
   if (node == NULL)
   {
@@ -163,18 +167,18 @@ btree_node* btree_delete(btree_node* node, i32 value)
   {
     if (node->left == NULL)
     {
-      btree_node* temp_node = node->right;
+      btree_node *temp_node = node->right;
       free(node);
       return temp_node;
     }
     else if (node->right == NULL)
     {
-      btree_node* temp_node = node->left;
+      btree_node *temp_node = node->left;
       free(node);
       return temp_node;
     }
 
-    btree_node* temp_node = btree_minimum_node(node->right);
+    btree_node *temp_node = btree_minimum_node(node->right);
     node->value = temp_node->value;
     node->right = btree_delete(node->right, temp_node->value);
   }
@@ -182,7 +186,7 @@ btree_node* btree_delete(btree_node* node, i32 value)
   return node;
 }
 
-b32 btree_search(btree_node* node, i32 value)
+b32 btree_search(btree_node *node, i32 value)
 {
   if (node == NULL)
   {

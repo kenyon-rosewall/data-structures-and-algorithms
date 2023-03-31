@@ -21,7 +21,7 @@ i32 main(i32 argc, char **argv)
 {
   b32 dot = is_dot(argc, argv);
 
-  stack* s = stack_create(6);
+  stack *s = stack_create(6);
   i32 popped_empty = stack_pop(s);
   stack_push(s, 50);
   stack_push(s, 10);
@@ -35,19 +35,18 @@ i32 main(i32 argc, char **argv)
 
   if (dot)
   {
-
   }
   else
   {
     stack_print(s);
-    
+
     printf("Stack is empty: ");
     stack_empty(s) ? printf("YES\n") : printf("NO\n");
     printf("Stack is full: ");
     stack_full(s) ? printf("YES\n") : printf("NO\n");
 
     printf("Stack top is %d\n", stack_peek(s));
-    printf("Popped while empty value is %d\n", popped_empty); 
+    printf("Popped while empty value is %d\n", popped_empty);
     printf("Popped value is %d\n", popped);
   }
 

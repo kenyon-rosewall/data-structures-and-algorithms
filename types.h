@@ -32,14 +32,14 @@ typedef double f64;
 #define Real32Maximum FLT_MAX
 
 #if !defined(internal)
-  #define internal static
+#define internal static
 #endif
 #define global_variable static
 #define local_persist static
 
 //
 // CONSTANTS
-// 
+//
 
 #define Pi32 3.14159265359f
 #define Tau32 6.28318530717958647692f

@@ -12,7 +12,7 @@ void sll_test(b32 dot)
     printf("==================\n\n");
   }
 
-  sll_node** head = sll_create();
+  sll_node **head = sll_create();
   if (!dot)
   {
     printf("New list:");
@@ -25,7 +25,7 @@ void sll_test(b32 dot)
     printf("Pushed 6:");
     sll_print(head);
   }
-  
+
   sll_unshift(head, 14);
   if (!dot)
   {
@@ -47,14 +47,14 @@ void sll_test(b32 dot)
     sll_print(head);
   }
 
-  sll_node* popped = sll_pop(head);
+  sll_node *popped = sll_pop(head);
   if (!dot)
   {
     printf("Should have just popped 1:");
     sll_print(head);
   }
 
-  sll_node* shifted = sll_shift(head);
+  sll_node *shifted = sll_shift(head);
   if (!dot)
   {
     printf("Should have just shifted 14:");
@@ -89,7 +89,7 @@ void sll_test(b32 dot)
     sll_print(head);
   }
 
-  sll_node* removed_after = sll_remove_after(*head);
+  sll_node *removed_after = sll_remove_after(*head);
   if (!dot)
   {
     printf("Should have removed 6:");
@@ -103,7 +103,7 @@ void sll_test(b32 dot)
     sll_print(head);
   }
 
-  sll_node* removed = sll_remove(head, 3);
+  sll_node *removed = sll_remove(head, 3);
   if (!dot)
   {
     printf("Should have removed 7:");
@@ -119,7 +119,7 @@ void sll_test(b32 dot)
 
   if (!dot)
   {
-    sll_node* at = sll_at(head, 3);
+    sll_node *at = sll_at(head, 3);
     printf("The node at position 3 is: %d \n", at->data);
 
     printf("Searching for the number 73: ");
@@ -163,7 +163,7 @@ void dll_test(b32 dot)
     printf("==================\n\n");
   }
 
-  dll_node** head = dll_create();
+  dll_node **head = dll_create();
   if (!dot)
   {
     printf("New list:");
@@ -176,7 +176,7 @@ void dll_test(b32 dot)
     printf("Pushed 6:");
     dll_print(head);
   }
-  
+
   dll_unshift(head, 14);
   if (!dot)
   {
@@ -198,14 +198,14 @@ void dll_test(b32 dot)
     dll_print(head);
   }
 
-  dll_node* popped = dll_pop(head);
+  dll_node *popped = dll_pop(head);
   if (!dot)
   {
     printf("Should have just popped 1:");
     dll_print(head);
   }
 
-  dll_node* shifted = dll_shift(head);
+  dll_node *shifted = dll_shift(head);
   if (!dot)
   {
     printf("Should have just shifted 14:");
@@ -240,7 +240,7 @@ void dll_test(b32 dot)
     dll_print(head);
   }
 
-  dll_node* removed_after = dll_remove_after(*head);
+  dll_node *removed_after = dll_remove_after(*head);
   if (!dot)
   {
     printf("Should have removed 6:");
@@ -254,7 +254,7 @@ void dll_test(b32 dot)
     dll_print(head);
   }
 
-  dll_node* removed = dll_remove(head, 3);
+  dll_node *removed = dll_remove(head, 3);
   if (!dot)
   {
     printf("Should have removed 7:");
@@ -270,7 +270,7 @@ void dll_test(b32 dot)
 
   if (!dot)
   {
-    dll_node* at = dll_at(head, 3);
+    dll_node *at = dll_at(head, 3);
     printf("The node at position 3 is: %d \n", at->data);
 
     printf("Searching for the number 73: ");
